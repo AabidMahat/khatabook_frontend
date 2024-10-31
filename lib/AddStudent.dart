@@ -16,7 +16,9 @@ void main() {
 }
 
 class AddStudent extends StatefulWidget {
-  const AddStudent({super.key});
+  final http.Client? client;
+  final SharedPreferences? sharedPreferences;
+  const AddStudent({super.key , this.client, this.sharedPreferences});
 
   @override
   _AddStudentState createState() => _AddStudentState();
@@ -157,7 +159,7 @@ class _AddStudentState extends State<AddStudent> {
       appBar: AppBar(
         backgroundColor: Colors.green.shade900,
         title: Text(
-          "Add Customer",
+          "Add Student",
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w600,
@@ -376,6 +378,7 @@ class _AddStudentState extends State<AddStudent> {
         borderRadius: BorderRadius.circular(12),
       ),
       child: TextButton(
+        key: Key('add_button'),
         onPressed: (classes.isEmpty || staffAccess == 'low'||createStudentBool)
             ? null
             : () {
@@ -384,7 +387,7 @@ class _AddStudentState extends State<AddStudent> {
                 }
               },
         child: Text(
-          "Add Customer",
+          "Add",
           style: TextStyle(
             color: Colors.white,
             fontSize: 18,
